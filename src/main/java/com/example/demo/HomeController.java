@@ -41,7 +41,9 @@ public class HomeController {
     public String logout(){return "redirect:/login?logout=true";}
 
     @RequestMapping("/admin")
-    public String adminPage(Model model){
+    public String adminPage(Model model, Principal principal){
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("messages", messageRepository.findAll());
         return "admin";
@@ -96,13 +98,15 @@ public class HomeController {
     public String disableUser(@PathVariable("id") long id, Model model){
             if(userRepository.findById(id).get().isEnabled()) {
                 userRepository.findById(id).get().setEnabled(false);
+
             }
             else if(!userRepository.findById(id).get().isEnabled()){
                 userRepository.findById(id).get().setEnabled(true);
-            }
 
+            }
+        userRepository.save(userRepository.findById(id).get());
         model.addAttribute("users", userRepository.findAll());
-        return "admin";
+        return "redirect:/admin";
     }
 
     @RequestMapping("/remove/{id}")
