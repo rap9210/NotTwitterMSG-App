@@ -1,0 +1,23 @@
+#login{
+    width: 200px;
+    margin-top: 200px;
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+.col-2{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.col-5{
+    margin-top: 50px;
+}
+
+.flex-column{
+    border-right: wave;
+    border: 2px;
+    border: skyblue;
+}
