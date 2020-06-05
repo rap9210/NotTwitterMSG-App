@@ -57,7 +57,9 @@ public class HomeController {
             return "newUser";
         }
         else{
+            Role userRole = new Role(user.getUsername(), "ROLE_USER");
             userRepository.save(user);
+            roleRepository.save(userRole);
             return "login";
         }
     }
@@ -90,14 +92,13 @@ public class HomeController {
 
     @RequestMapping("/disable/{id}")
     public String disableUser(@PathVariable("id") long id, Model model){
-        if(userRepository.existsById(id)){
             if(userRepository.findById(id).get().isEnabled()) {
                 userRepository.findById(id).get().setEnabled(false);
             }
             else{
                 userRepository.findById(id).get().setEnabled(true);
             }
-        }
+
         model.addAttribute("users", userRepository.findAll());
         return "admin";
     }
