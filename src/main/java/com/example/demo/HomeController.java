@@ -43,6 +43,7 @@ public class HomeController {
     @RequestMapping("/admin")
     public String adminPage(Model model){
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("messages", messageRepository.findAll());
         return "admin";
     }
 
@@ -84,9 +85,10 @@ public class HomeController {
         }
     }
 
-    @RequestMapping("/profile/{id}")
-    public String profile(Model model, @PathVariable("id") long id){
-        model.addAttribute("user", userRepository.findById(id).get());
+    @RequestMapping("/profile")
+    public String profile(Model model, Principal principal){
+            String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
         return "profile";
     }
 
@@ -95,12 +97,27 @@ public class HomeController {
             if(userRepository.findById(id).get().isEnabled()) {
                 userRepository.findById(id).get().setEnabled(false);
             }
-            else{
+            else if(!userRepository.findById(id).get().isEnabled()){
                 userRepository.findById(id).get().setEnabled(true);
             }
 
         model.addAttribute("users", userRepository.findAll());
         return "admin";
+    }
+
+    @RequestMapping("/remove/{id}")
+    public String removePost(@PathVariable("id") long id){
+            messageRepository.deleteById(id);
+
+            return "redirect:/admin";
+    }
+
+    @RequestMapping("/posts")
+    public String displayUserPosts(Principal principal, Model model){
+            String username = principal.getName();
+            model.addAttribute("user", userRepository.findByUsername(username));
+            return "posts";
+
     }
 
 }

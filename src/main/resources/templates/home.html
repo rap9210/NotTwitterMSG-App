@@ -19,10 +19,16 @@
                 <a class="nav-link active" th:href="@{/}"><h3>Home</h3></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" th:href="@{/newMessage}"><h3>New Post</h3></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/profile}"><h3>Profile</h3></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/posts}"><h3>Your Posts</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}"><h3>Log In</h3></a>
             </li>
             <li class="nav-item">
                 <form th:action="@{/logout}" method="post">
@@ -38,22 +44,19 @@
                 <h3>Post Feed</h3>
             </div>
         </div>
-        <a th:href="@{/newMessage}"><h4>Create Post</h4></a>
         <div th:each="message: ${messages}">
             <div class="jumbotron jumbotron-fluid-center">
                 <div class="container">
                     <p>user: <strong><u>[[${message.user.username}]]</u></strong></p>
                     <p> - [[${message.content}]]</p>
                 </div>
-
-
-
             </div>
-
         </div>
     </div>
 
-    <div class="col-5"></div>
+    <div class="col-5">
+<!--        <div th:switch="${}"-->
+    </div>
 </div>
 
 

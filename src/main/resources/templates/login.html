@@ -9,30 +9,62 @@
     <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
+<div class="row">
+    <div class="col-2">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <h3><a class="nav-link active" th:href="@{/}"><i class="fas fa-feather-alt"></i></a></h3>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/}"><h3>Home</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/newMessage}"><h3>New Post</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/profile}"><h3>Profile</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/posts}"><h3>Your Posts</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}"><h3>Log In</h3></a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout">
+                </form>
 
-<div class="container text-center" id="login">
-    <div th:if="(${param.error})">
-        Invalid username or password
+            </li>
+        </ul>
     </div>
-    <form th:action="@{/login}" method="post">
+    <div class="col-5">
+        <div class="container text-center" id="login">
+            <div th:if="(${param.error})">
+                Invalid username or password
+            </div>
+            <form th:action="@{/login}" method="post">
 
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username" name="username"/>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username" name="username"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password"/>
+                </div>
+
+                <div style="padding-bottom: 5px">
+                    <input type="submit" value="Sign in"/>
+
+                </div>
+
+            </form>
+
+            <a th:href="@{/newUser}">Create New Account</a>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" name="password"/>
-        </div>
-
-        <div style="padding-bottom: 5px">
-            <input type="submit" value="Sign in"/>
-
-        </div>
-
-    </form>
-
-    <a th:href="@{/newUser}">Create New Account</a>
+    </div>
+    <div class="col-2"></div>
 </div>
 
 

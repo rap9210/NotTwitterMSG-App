@@ -9,6 +9,54 @@
 </head>
 <body>
 
+<div class="row">
+    <div class="col-2">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <h3><a class="nav-link active" th:href="@{/}"><i class="fas fa-feather-alt"></i></a></h3>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/}"><h3>Home</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/newMessage}"><h3>New Post</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/profile}"><h3>Profile</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/posts}"><h3>Your Posts</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}"><h3>Log In</h3></a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout">
+                </form>
+
+            </li>
+        </ul>
+    </div>
+    <div class="col-5">
+        <h3>User Posts</h3>
+        <div th:each="message: ${user.messages}">
+            <div class="jumbotron jumbotron-fluid-center">
+                <div class="container">
+                    <p>[[${message.content}]]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+
+</div>
+
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

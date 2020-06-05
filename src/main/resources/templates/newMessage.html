@@ -9,23 +9,55 @@
     <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
+<div class="row">
+    <div class="col-2">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <h3><a class="nav-link active" th:href="@{/}"><i class="fas fa-feather-alt"></i></a></h3>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/}"><h3>Home</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/newMessage}"><h3>New Post</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/profile}"><h3>Profile</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/posts}"><h3>Your Posts</h3></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}"><h3>Log In</h3></a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout">
+                </form>
 
-<div class="container text-center" id="login">
+            </li>
+        </ul>
+    </div>
+    <div class="col-5">
+        <div class="container text-center" id="login">
 
-    <form th:action="@{/newMessage}" th:object="${message}" method="post">
+            <form th:action="@{/newMessage}" th:object="${message}" method="post">
 
-        <input type="hidden" th:field="*{id}" />
-        <input type="hidden" th:field="*{user}"/>
-        <div class="form-group">
-            <label for="post">New Post</label>
-            <textarea rows="3" class="form-control" id="post" th:field="*{content}"/>
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{user}"/>
+                <div class="form-group">
+                    <label for="post">New Post</label>
+                    <textarea rows="3" class="form-control" id="post" th:field="*{content}"/>
+                </div>
+
+                <div style="padding-bottom: 5px">
+                    <input type="submit" value="Post"/>
+                </div>
+
+            </form>
         </div>
-
-        <div style="padding-bottom: 5px">
-            <input type="submit" value="Post"/>
-        </div>
-
-    </form>
+    </div>
+    <div class="col-2"></div>
 </div>
 
 
