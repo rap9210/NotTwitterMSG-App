@@ -20,6 +20,7 @@ public class User {
     public String username;
 
     @Column (name = "password")
+    @NotEmpty
     public String password;
 
     @Column (name = "email")
@@ -35,7 +36,7 @@ public class User {
     private String lastName;
 
     @Column (name = "enabled")
-    private boolean enabled;
+    private boolean enabled = true;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public Set<Message> messages;

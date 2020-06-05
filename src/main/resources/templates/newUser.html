@@ -6,8 +6,57 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a3a8254123.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
+
+<div class="container text-center" id="login">
+
+    <form th:action="@{/newUser}" th:object="${user}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="First Name" >First Name</label>
+            <input type="text" th:field="*{firstName}" id="First Name" />
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Last Name" >Last Name</label>
+            <input type="text" th:field="*{lastName}" id="Last Name" />
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="username" >Username</label>
+            <input type="text" th:field="*{username}" id="username" />
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        </div>
+        <div class="form-group">
+            <label for="Email" >Email</label>
+            <input type="email" th:field="*{email}" id="Email" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div class="form-group">
+            <label for="Password" >Password</label>
+            <input type="text" th:field="*{password}" id="Password" />
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+
+
+        <div style="padding-bottom: 5px">
+            <input type="submit" value="Create"/>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

@@ -21,8 +21,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/h2-console/**", "/styles/**").permitAll()
-                .antMatchers("/").anonymous()
-                .antMatchers("/admin", "/remove", "/enable").hasRole("ADMIN")
+                .antMatchers("/", "/newUser").permitAll()
+                .antMatchers("/newMessage/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin", "/disable/**").hasAnyRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()

@@ -9,38 +9,31 @@
     <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-5">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Name</th>
-                <th scope="col">Enabled</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            <div th:each="user: ${users}">
-                <tr>
-                    <td>[[${user.username}]]</td>
-                    <td>[[${user.email}]]</td>
-                    <td>[[${user.firstName}]] [[${user.lastName}]]</td>
-                    <td>[[${user.enabled}]]</td>
-                    <td>
-                        <a th:href="@{/disable/{id}(id=${user.id})}">Disable</a>
-                    </td>
-                </tr>
-            </div>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-2"></div>
+<div class="container text-center" id="login">
 
+    <form th:action="@{/newMessage}" th:object="${message}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{user}"/>
+        <div class="form-group">
+            <label for="post">New Post</label>
+            <textarea rows="3" class="form-control" id="post" th:field="*{content}"/>
+        </div>
+
+        <div style="padding-bottom: 5px">
+            <input type="submit" value="Post"/>
+        </div>
+
+    </form>
 </div>
+
+
+
+
+
+
+
 
 
 

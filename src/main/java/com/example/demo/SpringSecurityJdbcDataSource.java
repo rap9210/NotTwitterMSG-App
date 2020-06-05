@@ -16,9 +16,9 @@ public class SpringSecurityJdbcDataSource {
                                  RoleRepository roleRepository) throws Exception{
         return (String[]args) -> {
 
-            User admin = new User("rap", "rap", "rap9210@gmail.com", "Ronald", "Porrata", true);
+            User admin = new User("admin", "admin", "rap9210@gmail.com", "Ronald", "Porrata", true);
 
-            Role adminRole = new Role("rap", "ROLE_ADMIN");
+            Role adminRole = new Role("admin", "ROLE_ADMIN");
 
             userRepository.save(admin);
             roleRepository.save(adminRole);
@@ -29,6 +29,7 @@ public class SpringSecurityJdbcDataSource {
 
             userRepository.save(user);
             roleRepository.save(userRole);
+
         };
 
 
